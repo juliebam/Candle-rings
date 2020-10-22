@@ -1,0 +1,53 @@
+
+{% assign break_at = 3 %}
+
+{% assign product_id = product.id %}
+<div class="related-container">
+ <div class="related-products"> 
+{% if product.collections %}
+{% comment %} <h2>{{ section.settings.related_title }}</h2> {% endcomment %}
+   {% for collection in product.collections %}
+      {% for product in collection.products %}
+         {% unless product.id == product_id %}
+     
+         <figure>
+            <a href="{{product.url}}">
+               <img src="{{ product | img_url: '300x' }}" alt="{{product.featured_image.alt}}">
+               <figcaption>
+                  <a class="figcap-title">{{product.title}}</a>
+                  <a>{{product.price | money}}</a>
+               </figcaption>
+            </a>
+         </figure>
+    
+         {% endunless %}
+
+         {% assign counter = counter | plus: 1 %}
+
+         {% if counter == break_at %}
+            {% break %}
+         {% endif %}
+      {% endfor %}
+
+   {% endfor %}
+{% endif %}
+  </div>
+</div>  
+
+
+{% schema %}
+{
+
+  "name": "Related products",
+  "class" : "products-related",
+  "tag" : "section",
+  "settings": [
+      {
+         "id": "related_title",
+         "type": "text",
+         "label": "Section title",
+         "default": "Related Products"
+      }
+   ]
+}
+{% endschema %}

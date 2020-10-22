@@ -1,0 +1,57 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Featured Collection" section in the theme editor.
+  Theme Store required settings
+  - Collection
+  Theme Store optional settings
+  - Heading: title of the featured collection section
+{%- endcomment -%}
+<section class="featured-collection">
+  {%- assign collection = collections[section.settings.collection] -%}
+
+
+<img src='{{collection | img_url: "medium"}} alt={{collection.alt}}'>
+<h2> {{collection.title}} </h2>
+
+<a href="{{collection.url}}">Learn More</a>
+
+</section>
+
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "settings": [
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

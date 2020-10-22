@@ -1,0 +1,43 @@
+<section class="two-collection ">
+    <div class="collection_1">
+        {%- assign collection_1 = collections[section.settings.collection_1] -%}
+
+        <h2> {{collection_1.title}} </h2>
+            <a href="{{collection_1.url}}">Learn More</a>
+    </div>
+    <div class="collection_2">
+        {%- assign collection_2 = collections[section.settings.collection_2] -%}
+
+        <h2> {{collection_2.title}} </h2>
+            <a href="{{collection_2.url}}">Learn More</a>
+    </div>
+</section>
+
+{% schema %}
+
+{
+    "name": "Collections",
+    "class": "collections",
+    "settings": [
+        {
+        "id": "collection_1",
+        "type": "collection",
+        "label": "Collection 1"
+      },
+        {
+        "id": "collection_2",
+        "type": "collection",
+        "label": "Collection 2"
+      }
+    ],
+    "presets": [
+        {
+            "name": "Two Collection Section",
+            "category": "Collection"
+        }
+    ]
+
+}
+
+
+{% endschema%}

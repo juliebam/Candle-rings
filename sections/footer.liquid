@@ -1,0 +1,44 @@
+<footer class="site-footer">
+    <img src='{{section.settings.footer_logo | img_url: "150x"}} alt={{section.settings.footer_logo.alt}}'>
+    <p> Follow us on:</p>
+    {% for block in section.blocks %}
+       {% if block.type == "text" %}
+        
+          <a href="{{block.settings.social_link}}" target="_blank">{{block.settings.social_icon}}</a>
+       {% endif %}
+    {% endfor %}
+
+</footer>
+  
+  {% schema %}
+    {
+      "name": "Footer",
+      "settings": [
+       {
+         "type": "image_picker",
+         "id": "footer_logo",
+         "label": "Footer Logo"
+       }
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "name": "Social Link",
+          "settings" : [
+            {
+              "type": "text",
+              "id": "social_icon",
+              "label": "Social Icon"
+            },
+            {
+              "type": "url",
+              "id": "social_link",
+              "label": "Social Link"
+            }
+          ]
+        }
+      ]
+    }
+  
+  {% endschema %}
+  

@@ -1,0 +1,25 @@
+
+{% for title in collection.title %}
+  {% if collection.title == collection.title %}
+        <h1>{{collection.title}}</h1>
+{% endif %} 
+{% endfor %} 
+
+{% schema %}
+
+  {
+      "name": "Header-Products",
+      "class": "header-products",
+      "settings": [
+       {
+         "type": "text",
+         "id": "title",
+         "label": "Title"
+       }
+      ]
+  }
+
+
+
+
+{% endschema%}

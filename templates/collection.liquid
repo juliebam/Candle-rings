@@ -1,0 +1,55 @@
+{% paginate collection.products by 9 %}
+  
+  {% if collection.handle == 'all'%}
+    <section class="header-all">
+      <h1>Candles</h1>
+    </section>
+  {% else %}
+    {% section 'header-products' %}
+  {% endif %}
+
+  {% render 'breadcrumbs' %}
+  {% if collection.all_tags.size > 0 %}
+
+ <div class="flexContainer-Candles">   
+  <div class="color-filter">
+      <h3>Filter by Color</h3>
+      <ul>
+        {% for tag in collection.all_tags %}
+          {% if current_tags contains tag %}
+            <li class="active tag-{{tag}}">{{tag | link_to_remove_tag: tag}}</li>
+
+          {% else%}
+            <li class="tag-{{tag}}">{{ tag | link_to_tag: tag }}</li>
+          {% endif %}
+
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+
+
+  <div class="products"> 
+    <p>Sort By:<p>{% render 'sort-by' %}
+    <div class="products-container">
+      {% for product in collection.products %}
+        <div>
+          <a href="{{ product.url | within: collection }}">
+          <img src="{{ product.featured_image.src | img_url: '200x200' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
+          <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+            <div class="price">{{ product.price | money }}</div>
+            {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+        </div>
+      {% else %}
+          <p>no matches</p>
+      {% endfor %}
+    </div>
+ </div>
+</div>
+<div class="pagination">
+  {% if paginate.pages > 1 %}
+    {{ paginate | default_pagination: next: '>', previous: '<'}}
+  {% endif %}
+{% endpaginate %}
+</div>

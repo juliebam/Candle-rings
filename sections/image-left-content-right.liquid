@@ -1,0 +1,46 @@
+<section class="about-us">
+    <img src='{{section.settings.image_left| img_url: "373x220"}} alt={{section.settings.image_left.alt}}'>
+<div> 
+    <h3>{{section.settings.title}}</h3>
+    <p>{{section.settings.paragraph}}</p>
+</div>
+
+</section>
+
+
+
+{% schema %}
+
+{
+    "name": "Image Left, Content Right",
+    "class": "image_left_content_right",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image_left", 
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+
+        },
+        {
+            "type": "textarea",
+            "id": "paragraph",
+            "label": "Content"
+        }
+    ],
+    "presets": [
+        {
+            "name": "image left, content right",
+            "category": "About"
+        }
+    ]
+
+}
+
+
+
+{% endschema%}

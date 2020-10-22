@@ -1,0 +1,53 @@
+
+<section class="latest-blog">
+
+    <div>
+        <h4>{{section.settings.title_2}}</h3>
+        <h3>{{section.settings.title_1}}</h2>
+
+        <p>{{section.settings.paragraph}}</p>
+    </div>
+
+    <img src='{{section.settings.image| img_url: "400x300"}} alt={{section.settings.image.alt}}'>
+</section>
+
+
+{% schema %}
+
+    {
+    "name": "Latest Blog Post",
+    "class": "latest-blog-post",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image", 
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "title_1",
+            "label": "Title 1"
+
+        },
+        {
+            "type": "text",
+            "id": "title_2",
+            "label": "Title 2"
+
+        },
+        {
+            "type": "textarea",
+            "id": "paragraph",
+            "label": "Content"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Latest Blog Post",
+            "category": "Blog"
+        }
+    ]
+
+}
+
+{% endschema %}

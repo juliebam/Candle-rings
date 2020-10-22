@@ -1,0 +1,37 @@
+// Put your application javascript here
+
+$(function() {
+    console.log('js loaded');
+
+     $("#sort-by").on("change", function(){
+        let value = $(this).val();
+        window.location.href = value;
+      });
+
+      // $('.main-carousel').flickity({
+      //   freeScroll: true,
+      //   // contain: true,
+      //   // disable previous & next buttons and dots
+      //   prevNextButtons: true,
+      //   pageDots: false,
+      // });
+
+      $('#productSelect').on("change", function(){
+        console.log('change')
+        var price = $(this).find(":selected").attr('title');
+        $('#product-price').text(price);
+      });
+
+      $('#nav-icon').click(function(){
+        $(this).toggleClass('open');
+
+        $('.navigatorMenu').toggleClass('show');
+      });
+
+  
+
+
+     
+    
+      
+    });

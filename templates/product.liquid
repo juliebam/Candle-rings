@@ -1,0 +1,63 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+  <div class="product-container">
+    <div class="product-images">
+      <img src="{{ featured_image | img_url: '400x' }}" 
+           alt="{{ featured_image.alt | escape }}" 
+           id="ProductPhotoImg"
+           data-src="{{ img_url }}"
+           data-widths="[150, 200, 300, 500, 600]"
+           data-aspectratio="{{ article.image.aspect_ratio }}"
+           data-sizes="auto">
+
+      <div class="small-product-images">
+        {% for image in product.images %}
+          {% if image.src != product.featured_image %}
+              <img src="{{image | product_img_url:'100x'}}" 
+              alt="{{product.title}}"
+               data-src="{{ img_url }}"
+               data-widths="[50, 100, 150]"
+               data-aspectratio="{{ article.image.aspect_ratio }}"
+               data-sizes="auto"
+              />
+          {% endif %}
+        {% endfor %}  
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h1>{{ product.title }}</h1>
+          <p class="price-product" id="product-price">{{ current_variant.price | money }}</p>
+        {% comment %} <div>{{ product.description }}</div> {% endcomment %}
+      <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+        <select name="id" id="productSelect">
+          {% for variant in product.variants %}
+            {% if variant.available %}
+              <option title="{{variant.price | money_with_currency }}" value="{{ variant.id }}">
+                {{ variant.title }} - {{ variant.price | money_with_currency }}
+              </option>
+            {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} - sold out
+              </option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <div>  
+          <label for="Quantity">Quantity</label>
+          <input type="number" id="Quantity" name="quantity" value="1" min="1">
+        </div>
+        <ul>
+          <li><i class="far fa-clock"></i>long burn time</li>
+          <li><i class="fas fa-leaf"></i>good for the environment</li>
+          <li><i class="fas fa-check"></i>safe to burn</li>
+        </ul>
+      <button type="submit" name="add" id="AddToCart">Add to cart</button>
+      </form>
+    </div>
+</div>
+{% section 'related-products' %}
+
